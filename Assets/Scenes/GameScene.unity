@@ -872,7 +872,8 @@ MonoBehaviour:
   speed: 5
   smoothTime: 0.05
   gravityMultiplier: 1
-  jumpPower: 4
+  jumpPower: 3
+  maxNumberOfJumps: 2
 --- !u!136 &954162850
 CapsuleCollider:
   m_ObjectHideFlags: 0
