@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
 	[SerializeField] private float speed;
 
+	[SerializeField] private Movement movement;
+
 	#endregion
 	#region Variables: Rotation
 
@@ -75,7 +77,10 @@ public class PlayerController : MonoBehaviour
 
 	private void ApplyMovement()
 	{
-		_characterController.Move(_direction * speed * Time.deltaTime);
+		var targetSpeed = movement.isSprinting ? movement.speed * movement.multiplier : movement.speed;
+		movement.currentSpeed = Mathf.MoveTowards(movement.currentSpeed, targetSpeed, movement.acceleration * Time.deltaTime);
+
+		_characterController.Move(_direction * movement.currentSpeed * Time.deltaTime);
 	}
 
 	public void Move(InputAction.CallbackContext context)
@@ -94,6 +99,11 @@ public class PlayerController : MonoBehaviour
 		_velocity = jumpPower;
 	}
 
+	public void Sprint(InputAction.CallbackContext context)
+	{
+		movement.isSprinting = context.started || context.performed;
+	}
+
 	private IEnumerator WaitForLanding()
 	{
 		yield return new WaitUntil(() => !IsGrounded());
@@ -103,4 +113,15 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private bool IsGrounded() => _characterController.isGrounded;
+}
+
+[Serializable]
+public struct Movement
+{
+	public float speed;
+	public float multiplier;
+	public float acceleration;
+
+	[HideInInspector] public bool isSprinting;
+	[HideInInspector] public float currentSpeed;
 }

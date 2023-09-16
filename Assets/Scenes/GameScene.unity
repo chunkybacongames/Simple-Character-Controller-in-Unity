@@ -355,8 +355,8 @@ MonoBehaviour:
   mouseSensitivity:
     horizontal: 20
     vertical: 20
-    invertHorizontal: 0
-    invertVertical: 0
+    invertHorizontal: 1
+    invertVertical: 1
   cameraAngle:
     min: 10
     max: 50
@@ -578,6 +578,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4f2d42c1-59af-41dd-820c-df69997aa9d8
     m_ActionName: Gameplay/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 954162849}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Sprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e0b3735c-3549-4a3f-a11d-594af2e620bf
+    m_ActionName: Gameplay/Sprint[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -920,6 +936,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  movement:
+    speed: 5
+    multiplier: 2
+    acceleration: 20
+    isSprinting: 0
+    currentSpeed: 0
   rotationSpeed: 500
   gravityMultiplier: 1
   jumpPower: 3
